@@ -9,32 +9,37 @@
 body{
     color:#fff;
     font-family: 'Montserrat', sans-serif;
+    background: url(../img/bg.jpg) no-repeat center center/cover;
 }
 .colore-viola{
     color:#C2128D;
 }
 #intestazione{
-    font-size: 3rem;
+    font-size: 3.5rem;
 }
 #sotto-titolo{
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding-top: 0.75rem;
+    font-weight: bold;
 }
 p,li,label{
     font-size:0.75rem;
     opacity: 0.8;
 }
-/* UTILTY */
-
-/* Sezione Principale */
+div#header{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+}
 div#sezione-principale{
-    height: 100vh;
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 2rem;
     padding-bottom: 4rem;
-    background: url(../img/bg.jpg) no-repeat center center/cover;
 }
+/* UTILTY */
+
+/* Sezione Principale */
 div#sezione-principale p#intestazione{
     width: 40%;
     margin-bottom: 1rem;
