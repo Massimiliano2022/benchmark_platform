@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <title>Welcome to your exam</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <title>Welcome to your exam</title>
 </head>
+
 <body>
-    <main>
-      <img src="img/epicode_logo.png" alt="Logo Epicode" width="150">
-      <h1>Welcome to your exam</h1>
-      <h2 class="colore-viola">Instructions</h2>
-      <p>We don't expect most engineers to know the answers to all of these questions, so don't worry if you're unsure of a few of them.</p>
-      <ul>
-        <li>Each question is timed and can only be answered once.</li>
-        <li>Changing browser tab or opening other windows will invalidate the question.</li>
-        <li>This exam will take approx. 0-5 minutes.</li>
-      </ul>
-      <div id="form">
-        <div id="input">
-          <input type="checkbox" name="promise" id="promise">
-          <label for="promise">I promise to answer myself without help from anyone</label>
-        </div>
-        <button onclick="checkPromise()">PROCEED</button>
+  <div id="sezione-principale">
+    <img src="img/epicode_logo.png" alt="Logo Epicode" width="150">
+    <p id="intestazione">Welcome to <span>your exam</span></p>
+    <p id="sotto-titolo" class="colore-viola">Instructions</p>
+    <p class="testo">We don't expect most engineers to know the answers to all of these questions, so don't worry if
+      you're unsure of a few of them.</p>
+    <ul>
+      <li>Each question is timed and can only be answered once.</li>
+      <li>Changing browser tab or opening other windows will invalidate the question.</li>
+      <li>This exam will take approx. 0-5 minutes.</li>
+    </ul>
+    <div id="form">
+      <div id="input">
+        <input type="checkbox" name="promise" id="promise">
+        <label for="promise">I promise to answer myself without help from anyone</label>
       </div>
-    </main>
-    <script src="js/welcome_page_script.js"></script>
+      <button onclick="checkPromise()">PROCEED</button>
+    </div>
+  </div>
+  <script src="js/welcome_page_script.js"></script>
 </body>
+
 </html>

@@ -8,53 +8,62 @@
 
 body{
     color:#fff;
+    font-family: 'Montserrat', sans-serif;
 }
 .colore-viola{
     color:#C2128D;
 }
-h1{
-    font-size: 3.5rem;
+#intestazione{
+    font-size: 3rem;
 }
-h2{
+#sotto-titolo{
     font-size: 2rem;
+    padding-top: 0.75rem;
 }
 p,li,label{
-    font-size:1.25rem;
+    font-size:0.75rem;
+    opacity: 0.8;
 }
 /* UTILTY */
 
-/* MAIN */
-main{
-    height:100vh;
-    padding:2rem 4rem;
-    background: url('/img/bg.jpg') no-repeat center center/cover;
+/* Sezione Principale */
+div#sezione-principale{
+    height: 100vh;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    background: url(../img/bg.jpg) no-repeat center center/cover;
 }
-main h1{
-    width: 35%;
+div#sezione-principale p#intestazione{
+    width: 40%;
     margin-bottom: 1rem;
     line-height: 75%;
 }
-main img{
+div#sezione-principale p#intestazione span{
+    font-weight: bold;
+}
+div#sezione-principale img{
     margin-bottom:3rem;
 }
-main p{
+div#sezione-principale p.testo{
     width: 65%;
 }
-main ul{
+div#sezione-principale ul{
     margin: 2rem 1.5rem;
 }
-main div#form{
+div#sezione-principale div#form{
     display: flex;
     align-items: center;
 }
-main div#form button{
+div#sezione-principale div#form button{
     background: #00FFFF;
     color: #0B113B;
     font-weight: bold;
     padding: 0.75rem 2.5rem;
     border: 0;
 }
-main div#input{
+div#sezione-principale div#input{
     flex:1;
 }
 /* MAIN */
