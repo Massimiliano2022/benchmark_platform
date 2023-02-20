@@ -1,0 +1,59 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+/* UTILTY */
+
+body{
+    color:#fff;
+}
+.colore-viola{
+    color:#C2128D;
+}
+h1{
+    font-size: 3.5rem;
+}
+h2{
+    font-size: 2rem;
+}
+p,li,label{
+    font-size:1.25rem;
+}
+/* UTILTY */
+
+/* MAIN */
+main{
+    height:100vh;
+    padding:2rem 4rem;
+    background: url('/img/bg.jpg') no-repeat center center/cover;
+}
+main h1{
+    width: 35%;
+    margin-bottom: 1rem;
+    line-height: 75%;
+}
+main img{
+    margin-bottom:3rem;
+}
+main p{
+    width: 65%;
+}
+main ul{
+    margin: 2rem 1.5rem;
+}
+main div#form{
+    display: flex;
+}
+main div#form button{
+    background: #00FFFF;
+    color: #0B113B;
+    font-weight: bold;
+    padding: 0.75rem 2.5rem;
+    border: 0;
+}
+main div#input{
+    flex:1;
+}
+/* MAIN */
