@@ -45,6 +45,7 @@ main ul{
 }
 main div#form{
     display: flex;
+    align-items: center;
 }
 main div#form button{
     background: #00FFFF;
