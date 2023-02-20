@@ -13,23 +13,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <title>Welcome to your exam</title>
 </head>
+
 <body>
-    <div id="header">
-        <img src="img/epicode_logo.png" alt="Logo Epicode" width="150">
-        <!--<div id="app"></div>-->
-    </div>
-    <div id="sezione-principale-test">
-        <div id="quiz">
-            <p id="domanda">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, hic?</p>
-            <div id="risposte-quiz">
-                <button>Risposta 1</button>
-                <button>Risposta 2</button>
-                <button>Risposta 3</button>
-                <button>Risposta 4</button>
-            </div>
-            <p>Numero domanda</p>
+    <div class="container">
+        <div id="logo">
+            <img src="img/epicode_logo.png" alt="Logo Epicode" width="150">
         </div>
-    </div>
+        <div id="sezione-quiz">
+            <div id="quiz">
+                <p id="domanda" class="center">Lorem ipsum dolor sit amet quae, hic?</p>
+                <div class="risposte-quiz">
+                    <button>Risposta 1</button>
+                    <button>Risposta 2</button>
+                </div>
+                <div class="risposte-quiz">
+                    <button>Risposta 3</button>
+                    <button>Risposta 4</button>
+                </div>
+            </div>
+            <p class="center">Numero domanda</p>
+        </div>
     </div>
     <script src="js/welcome_page_script.js"></script>
 </body>

@@ -3,43 +3,47 @@
     padding:0;
     box-sizing: border-box;
 }
-
 /* UTILTY */
-
 body{
     color:#fff;
     font-family: 'Montserrat', sans-serif;
-    background: url(../img/bg.jpg) no-repeat center center/cover;
 }
 .colore-viola{
     color:#C2128D;
 }
-#intestazione{
+p#intestazione{
     font-size: 3.5rem;
 }
-#sotto-titolo{
+p#domanda{
+    font-size: 2rem;
+    padding: 2rem;
+}
+p#sotto-titolo{
     font-size: 1.5rem;
     padding-top: 0.75rem;
     font-weight: bold;
 }
-p,li,label{
-    font-size:0.75rem;
-    opacity: 0.8;
+div.container{
+    background: url(../img/bg.jpg) no-repeat center center/cover;
 }
-div#header{
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 2rem;
-}
-div#sezione-principale{
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 2rem;
-    padding-bottom: 4rem;
+.center{
+    text-align:center;
 }
 /* UTILTY */
 
-/* Sezione Principale */
+/* SEZIONE PRINCIPALE */
+div#logo{
+    height: 15vh;
+    padding: 2rem 4rem;
+}
+div#sezione-principale{
+    height:85vh;
+    padding: 0 4rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 div#sezione-principale p#intestazione{
     width: 40%;
     margin-bottom: 1rem;
@@ -47,9 +51,6 @@ div#sezione-principale p#intestazione{
 }
 div#sezione-principale p#intestazione span{
     font-weight: bold;
-}
-div#sezione-principale img{
-    margin-bottom:3rem;
 }
 div#sezione-principale p.testo{
     width: 65%;
@@ -61,6 +62,9 @@ div#sezione-principale div#form{
     display: flex;
     align-items: center;
 }
+div#sezione-principale div#form div#input{
+    flex:1;
+}
 div#sezione-principale div#form button{
     background: #00FFFF;
     color: #0B113B;
@@ -68,7 +72,33 @@ div#sezione-principale div#form button{
     padding: 0.75rem 2.5rem;
     border: 0;
 }
-div#sezione-principale div#input{
-    flex:1;
+/* SEZIONE PRINCIPALE */
+
+/* SEZIONE QUIZ */
+div#sezione-quiz{
+    height:85vh;
+    padding: 0 4rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-/* MAIN */
+div#sezione-quiz div#quiz{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div#sezione-quiz div#quiz div.risposte-quiz button{
+    padding: 1rem 4rem;
+    margin: 1rem;
+    color: #fff;
+    background: #23294F;
+    border: 3px solid #fff;
+    border-radius: 12px;
+    opacity: 0.75;
+}
+div#sezione-quiz p.center{
+    padding-top:4rem;
+    padding-bottom:2rem;
+}
+/* SEZIONE QUIZ */
