@@ -26,16 +26,15 @@ p#sotto-titolo{
 div.container{
     background: url(../img/bg.jpg) no-repeat center center/cover;
 }
-.center{
-    text-align:center;
-}
-/* UTILTY */
-
-/* SEZIONE PRINCIPALE */
 div#logo{
     height: 15vh;
     padding: 2rem 4rem;
 }
+.center{
+    text-align:center;
+}
+/* UTILTY */
+/* SEZIONE PRINCIPALE */
 div#sezione-principale{
     height:85vh;
     padding: 0 4rem;
@@ -102,3 +101,22 @@ div#sezione-quiz p.center{
     padding-bottom:2rem;
 }
 /* SEZIONE QUIZ */
+
+/* SEZIONE RISULTATO */
+div#sezione-result{
+    height:85vh;
+    padding: 0 4rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* CIRCLE BAR PROGRESS */
+
+  
+
+/* CIRCLE BAR PROGRESS */
+
+
+/* SEZIONE RISULTATO */
