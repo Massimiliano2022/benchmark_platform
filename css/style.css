@@ -93,7 +93,7 @@ div#sezione-quiz div#quiz div.risposte-quiz button{
     color: #fff;
     background: #23294F;
     border: 3px solid #fff;
-    border-radius: 12px;
+    border-radius: 50px;
     opacity: 0.75;
 }
 div#sezione-quiz p.center{
@@ -112,12 +112,38 @@ div#sezione-result{
     justify-content: center;
 }
 
-/* CIRCLE BAR PROGRESS */
+div#sezione-result div#result{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  
+    margin: 4rem 0;
+}
 
-/* CIRCLE BAR PROGRESS */
+div#sezione-result div#result div.risultato{
+    /*padding: 4rem;*/
+    margin: 0 4rem;
+}
+div#sezione-result div#div-esito{
+    border: 3px solid white;
+    border-radius: 50%;
+    background: #00FFFF;
 
+    padding:6rem;
+}
+
+div#sezione-result div#div-esito p {
+    font-size: 0.75rem;
+}
+
+div#sezione-result button{
+    margin-bottom: 1rem;
+    color: #fff;
+    background: transparent;
+    width: 25%;
+    border: 2px solid white;
+    padding: 0.75rem;
+}
 
 /* SEZIONE RISULTATO */
 
