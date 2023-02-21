@@ -120,11 +120,27 @@ window.onload = function () {
 
 // BUON LAVORO 💪🚀
 
-function timer() {
+/*function timer() {
   let sec = 30;
   let timer = setInterval(function () {
     let timerDiv = document.getElementById('timer');
     timerDiv.innerHTML = '00:' + (sec < 10 ? '0' : '') + sec;
+    sec--;
+    if (sec < 0) {
+      clearInterval(timer);
+      console.log(timer);
+    }
+  }, 1000);
+}*/
+function timer() {
+  let sec = 30;
+  let timer = setInterval(function () {
+    let timerSec = document.getElementById('timer-sec');
+    if (sec < 10) {
+      timerSec.innerHTML = '00:0' + sec;
+    } else {
+      timerSec.innerHTML = '00:' + sec;
+    }
     sec--;
     if (sec < 0) {
       clearInterval(timer);
