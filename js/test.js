@@ -136,10 +136,12 @@ timer();
 
 function selezionaDomanda(questions) {
 
-  // let numRand = Math.floor(Math.random() * questions.length);
+  //let numRand = Math.floor(Math.random() * questions.length);
   //let domanda = questions[numRand].question;
   let domanda = questions[9].question;
   let p = document.getElementById('domanda');
+
+  p.innerHTML = domanda;
 
   let risp1 = document.getElementById('risp1');
   let risp2 = document.getElementById('risp2');
@@ -170,10 +172,5 @@ function selezionaDomanda(questions) {
       break;
 
   }
-
-
-  p.innerHTML = domanda;
-
-
 }
 selezionaDomanda(questions);
