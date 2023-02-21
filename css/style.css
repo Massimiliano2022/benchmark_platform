@@ -15,8 +15,8 @@ p#intestazione{
     font-size: 3.5rem;
 }
 p#domanda{
-    font-size: 2rem;
-    padding: 2rem;
+    font-size: 1.5rem;
+    /*padding: 2rem;*/
 }
 p.sotto-titolo{
     font-size: 1.5rem;
@@ -90,7 +90,6 @@ div#logo-quiz div#timer{
     justify-content: center;
     align-items: center;
 }
-
 div#sezione-quiz{
     height:80vh;
     padding: 0 4rem;
@@ -105,16 +104,27 @@ div#sezione-quiz div#quiz{
     align-items: center;
 }
 div#sezione-quiz div#quiz div.risposte-quiz button{
-    padding: 1rem 4rem;
+    /*padding: 1rem 4rem;*/
     margin: 1rem;
     color: #fff;
     background: #23294F;
     border: 3px solid #fff;
     border-radius: 50px;
     opacity: 0.75;
+
+    width: 200px;
+    height: 40px;
+}
+div#sezione-quiz div#quiz div.risposte-quiz button:hover{
+    background: #C2128D;
+    animation-duration: 3s;
+}
+div#sezione-quiz div#quiz div.risposte-quiz button:active{
+    background: #00FFFF;
+    animation-duration: 3s;
 }
 div#sezione-quiz p.center{
-    padding-top:4rem;
+    padding-top:2rem;
     padding-bottom:2rem;
 }
 /* SEZIONE QUIZ */
