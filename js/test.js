@@ -172,5 +172,12 @@ function selezionaDomanda(questions) {
       break;
 
   }
+
+  for(i=0;i<questions[9].incorrect_answers.length;i++){
+    let rispRandSbagliata = Math.floor(Math.random() * 3);
+    let arrSbagliate = questions[9].incorrect_answers[i];
+    console.log(arrSbagliate);
+  }
+
 }
 selezionaDomanda(questions);
