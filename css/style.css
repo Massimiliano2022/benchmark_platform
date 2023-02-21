@@ -18,7 +18,7 @@ p#domanda{
     font-size: 2rem;
     padding: 2rem;
 }
-p#sotto-titolo{
+p.sotto-titolo{
     font-size: 1.5rem;
     padding-top: 0.75rem;
     font-weight: bold;
@@ -157,16 +157,42 @@ div#sezione-review{
     flex-direction: column;
     justify-content: center;
 
-    /*background:black;*/
+}
+
+div#sezione-review p{
+    margin:0.5rem 0;
 }
 
 div.valutazione-img{
     text-align-last: center;
-    margin: 1.2rem;
-    margin-bottom: 3.2rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
 }
 div.valutazione-img img{
     margin: 0.3rem;
+}
+
+div#sezione-review div#feedback{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div#sezione-review div#feedback input{
+    border: 0;
+    background: transparent;
+    border-bottom: 3px solid #C2128D;
+    width: 100%;
+    color: #fff;
+    margin: 2rem 0;
+}
+div#sezione-review div#feedback button{
+    background: #00FFFF;
+    color: #0B113B;
+    font-weight: bold;
+    padding: 0.75rem 2.5rem;
+    border: 0;
 }
 
 /* SEZIONE REVIEW */
