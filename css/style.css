@@ -38,7 +38,7 @@ div#logo{
 div#sezione-principale{
     height:85vh;
     padding: 0 4rem;
-
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
