@@ -7,7 +7,7 @@ function checkPromise() {
         window.location.href = 'test.html';
         timer();
     }else{
-        paragrafoErrore.textContent = 'Devi necessariamente accettare le condizioni per procedere.'
+        paragrafoErrore.textContent = 'You must accept the conditions to proceed with the quiz.'
         paragrafoErrore.classList.add('colore-viola');
         divForm.appendChild(paragrafoErrore);
     }

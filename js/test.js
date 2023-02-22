@@ -120,10 +120,12 @@ window.onload = function () {
 
 // BUON LAVORO 💪🚀
 
-let numeroDomandeTotale=questions.length;
+let numeroDomandeTotale = questions.length;
 
 let risposteUtente = [];
 let timerId;
+
+//let quizDiv = document.getElementById('quiz');
 
 let titoloDomanda = document.getElementById('domanda');
 let risposteBtns = document.getElementsByClassName('risposta-btn');
@@ -132,7 +134,7 @@ let domandaObj;
 
 let selectedBtn = null; // variabile per tenere traccia del bottone selezionato
 
-let contatoreDomande=0;
+let contatoreDomande = 0;
 
 selezionaDomanda(questions);
 
@@ -141,9 +143,9 @@ function selezionaDomanda(questions) {
     clearInterval(timerId);
 
     let numRand = Math.floor(Math.random() * questions.length);
-    
+
     domandaObj = questions[numRand];
-    
+
     let titolo = domandaObj.question;
 
     let tempo;
@@ -154,7 +156,7 @@ function selezionaDomanda(questions) {
     contatoreDomande++;
 
     // Aggiorna il testo dell'elemento HTML con il nuovo valore del contatore
-    document.getElementById('nDomanda').innerHTML = 'QUESTION ' + contatoreDomande + '<span>/'+numeroDomandeTotale+'</span>';
+    document.getElementById('nDomanda').innerHTML = 'QUESTION ' + contatoreDomande + '<span>/' + numeroDomandeTotale + '</span>';
 
     if (domandaObj.incorrect_answers.length == 1) {
         generaDueBottoni(domandaObj);
@@ -163,7 +165,7 @@ function selezionaDomanda(questions) {
     }
 
     for (let i = 0; i < risposteBtns.length; i++) {
-        risposteBtns[i].addEventListener('click', function(event) {
+        risposteBtns[i].addEventListener('click', function (event) {
             if (selectedBtn) {
                 selectedBtn.removeAttribute('id'); // rimuovi l'ID dal bottone selezionato precedentemente
             }
@@ -172,27 +174,46 @@ function selezionaDomanda(questions) {
         });
     }
 
-    if(domandaObj.difficulty == 'easy'){
-        tempo=30;
-    }else if(domandaObj.difficulty == 'medium'){
-        tempo=45;
-    }else{
-        tempo=60;
+    if (domandaObj.difficulty == 'easy') {
+        tempo = 30;
+    } else if (domandaObj.difficulty == 'medium') {
+        tempo = 45;
+    } else {
+        tempo = 60;
     }
+
     let timerParag = document.getElementById('timer-sec');
     timerParag.innerHTML = tempo;
-    document.getElementById('timer').appendChild(timerParag);
-    timerId = setInterval(function() {
+
+    let paragrafiTestoSecondi = document.getElementsByClassName('testo-secondi');
+    let referenceElement = paragrafiTestoSecondi[0]; // il primo elemento con classe "testo-secondi"
+
+    referenceElement.parentNode.insertBefore(timerParag, referenceElement.nextSibling);
+
+    timerId = setInterval(function () {
         tempo--;
         timerParag.innerHTML = tempo;
         if (tempo <= 0) {
             clearInterval(timerId);
             confermaRisposta();
         }
-    }, 1000);   
+    }, 1000);
 }
 
 function generaDueBottoni(domandaObj) {
+    /*
+    La funzione Math.random() restituisce un numero casuale compreso tra 0 e 1.
+    Quando sottraiamo 0.5 a questo numero casuale, otteniamo un valore compreso tra -0.5 e 0.5. 
+    In questo modo, quando ordineremo gli elementi dell'array con il metodo sort(), 
+    avremo una probabilità del 50% che l'elemento venga spostato prima dell'altro 
+    (caso in cui il valore restituito da Math.random() sia negativo), 
+    e una probabilità del 50% che venga spostato dopo (caso in cui il valore restituito da Math.random() sia positivo).
+    In sintesi, il sorteggio è effettuato in modo casuale in quanto non è possibile sapere a priori se Math.random() 
+    restituirà un valore positivo o negativo.
+    */
+
+    /* Usando lo spread operator ..., si uniscono questi due array in un unico array chiamato risposte. */
+
     let risposte = [...domandaObj.incorrect_answers, domandaObj.correct_answer];
     risposte.sort(() => Math.random() - 0.5);
 
@@ -207,6 +228,8 @@ function generaDueBottoni(domandaObj) {
     });
 
     document.getElementById('domanda').appendChild(container);
+
+    //quizDiv.insertBefore(container, domanda.nextSibling);
 
 }
 
@@ -234,6 +257,10 @@ function generaQuattroBottoni(domandaObj) {
     document.getElementById('domanda').appendChild(container1);
     document.getElementById('domanda').appendChild(container2);
 
+    /*quizDiv.insertBefore(container1, domanda.nextSibling);
+    quizDiv.insertBefore(container2, domanda.nextSibling);*/
+
+
 }
 
 function confermaRisposta() {
@@ -248,12 +275,25 @@ function confermaRisposta() {
 
     eliminaDomanda(domandaObj);
 
-    console.log(risposteUtente);
-    selezionaDomanda(questions);
+    if (contatoreDomande != numeroDomandeTotale) {
+
+        /*in questo momento i bottoni vengono creati dentro al paragrafo 
+        inseririli dentro al div quiz ma sotto al paragrafo+
+        e in questo punto rimuovere tutti i bottoni o il div quiz 
+        prima di lanciare nuovamente selezionaDomanda
+        */
+        selezionaDomanda(questions);
+    } else {
+        calcolaPunteggio(risposteUtente);
+    }
 }
 
 function eliminaDomanda(domandaObj) {
     if (questions.includes(domandaObj)) {
         questions.splice(questions.indexOf(domandaObj), 1);
     }
+}
+
+function calcolaPunteggio(risposteUtente) {
+    console.log(risposteUtente);
 }
