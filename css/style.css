@@ -39,7 +39,25 @@ div#logo-quiz{
 .center{
     text-align:center;
 }
+div#footer{
+    display: flex;
+    align-items: center;
+}
+div#footer div#input{
+    flex:1;
+}
+div#footer div#footer-button{
+    flex:1;
+}
+div#footer button{
+    background: #00FFFF;
+    color: #0B113B;
+    font-weight: bold;
+    padding: 0.75rem 2.5rem;
+    border: 0;
+}
 /* UTILTY */
+
 /* SEZIONE PRINCIPALE */
 div#sezione-principale{
     height:80vh;
@@ -62,20 +80,6 @@ div#sezione-principale p.testo{
 }
 div#sezione-principale ul{
     margin: 2rem 1.5rem;
-}
-div#sezione-principale div#form{
-    display: flex;
-    align-items: center;
-}
-div#sezione-principale div#form div#input{
-    flex:1;
-}
-div#sezione-principale div#form button{
-    background: #00FFFF;
-    color: #0B113B;
-    font-weight: bold;
-    padding: 0.75rem 2.5rem;
-    border: 0;
 }
 /* SEZIONE PRINCIPALE */
 

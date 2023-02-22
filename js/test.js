@@ -120,12 +120,14 @@ window.onload = function () {
 
 // BUON LAVORO 💪🚀
 
+let timerInterval; 
+
 timer();
 selezionaDomanda(questions);
 
 function timer() {
     let sec = 30;
-    let timer = setInterval(function () {
+    timerInterval = setInterval(function () {
         let timerSec = document.getElementById('timer-sec');
         if (sec < 10) {
             timerSec.innerHTML = '00:0' + sec;
@@ -134,55 +136,93 @@ function timer() {
         }
         sec--;
         if (sec < 0) {
-            clearInterval(timer);
-            console.log(timer);
+            clearInterval(timerInterval);
+            //selezionaDomanda(questions);
         }
     }, 1000);
 }
 
 function selezionaDomanda(questions) {
 
-    //let numRand = Math.floor(Math.random() * questions.length);
-    //let domanda = questions[numRand].question;
-    let domanda = questions[9].question;
-    let p = document.getElementById('domanda');
+    let numRand = Math.floor(Math.random() * questions.length);
+    let domandaObj = questions[numRand];
+    let domanda = domandaObj.question;
 
-    p.innerHTML = domanda;
+    let titoloDomanda = document.getElementById('domanda');
 
-    let risp1 = document.getElementById('risp1');
-    let risp2 = document.getElementById('risp2');
-    let risp3 = document.getElementById('risp3');
-    let risp4 = document.getElementById('risp4');
+    titoloDomanda.innerHTML = domanda;
 
-    let rispRand = Math.ceil(Math.random() * 4);
-    let rispEsatta = questions[9].correct_answer;
-    switch (rispRand) {
-        case 1:
-
-            risp1.innerHTML = rispEsatta;
-            break;
-
-        case 2:
-
-            risp2.innerHTML = rispEsatta;
-            break;
-
-        case 3:
-
-            risp3.innerHTML = rispEsatta;
-            break;
-
-        case 4:
-
-            risp4.innerHTML = rispEsatta;
-            break;
-
+    if(domandaObj.incorrect_answers.length == 1){
+        generaDueBottoni(domandaObj);
+    }else{
+        generaQuattroBottoni(domandaObj);
     }
 
-    for (i = 0; i < questions[9].incorrect_answers.length; i++) {
-        let rispRandSbagliata = Math.floor(Math.random() * 3);
-        let arrSbagliate = questions[9].incorrect_answers[i];
-        console.log(arrSbagliate);
+    let risposteBtns = document.getElementsByClassName('risposta-btn');
+    for (let i = 0; i < risposteBtns.length; i++) {
+        risposteBtns[i].addEventListener('click', selezionaRisposta);
     }
 
 }
+
+function generaDueBottoni(domandaObj) {
+    let risposte = [...domandaObj.incorrect_answers, domandaObj.correct_answer];
+    risposte.sort(() => Math.random() - 0.5);
+
+    let container = document.createElement('div');
+    container.classList.add('risposte-quiz');
+
+    risposte.forEach(function(risposta) {
+        let button = document.createElement('button');
+        button.innerHTML = risposta;
+        button.classList.add('risposta-btn');
+        container.appendChild(button);
+    });
+
+    document.getElementById('domanda').appendChild(container);
+
+}
+
+function generaQuattroBottoni(domandaObj) {
+    let risposte = [...domandaObj.incorrect_answers, domandaObj.correct_answer];
+    risposte.sort(() => Math.random() - 0.5);
+
+    let container1 = document.createElement('div');
+    container1.classList.add('risposte-quiz');
+
+    let container2 = document.createElement('div');
+    container2.classList.add('risposte-quiz');
+
+    for (let i = 0; i < risposte.length; i++) {
+        let button = document.createElement('button');
+        button.innerHTML = risposte[i];
+        button.classList.add('risposta-btn');
+        if (i < 2) {
+            container1.appendChild(button);
+        } else {
+            container2.appendChild(button);
+        }
+    }
+
+    document.getElementById('domanda').appendChild(container1);
+    document.getElementById('domanda').appendChild(container2);
+
+}
+
+function selezionaRisposta() {
+  
+    let rispostaSelezionata = this.innerHTML;
+
+    console.log(rispostaSelezionata);
+
+    clearInterval(timerInterval); 
+  
+    if (document.getElementById('timer-sec').innerHTML === '00:00') {
+      selezionaDomanda(questions); 
+    } else {
+      selezionaDomanda(questions);
+    }
+
+    timer();
+
+  }
