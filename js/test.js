@@ -2,7 +2,7 @@ const questions = [
     {
         category: "Science: Computers",
         type: "multiple",
-        difficulty: "easy",
+        difficulty: "medium",
         question: "What does CPU stand for?",
         correct_answer: "Central Processing Unit",
         incorrect_answers: [
@@ -23,7 +23,7 @@ const questions = [
     {
         category: "Science: Computers",
         type: "boolean",
-        difficulty: "easy",
+        difficulty: "hard",
         question: "The logo for Snapchat is a Bell.",
         correct_answer: "False",
         incorrect_answers: ["True"],
@@ -31,7 +31,7 @@ const questions = [
     {
         category: "Science: Computers",
         type: "boolean",
-        difficulty: "easy",
+        difficulty: "medium",
         question:
             "Pointers were not used in the original C programming language; they were added later on in C++.",
         correct_answer: "False",
@@ -61,7 +61,7 @@ const questions = [
     {
         category: "Science: Computers",
         type: "multiple",
-        difficulty: "easy",
+        difficulty: "hard",
         question:
             "What is the code name for the mobile operating system Android 7.0?",
         correct_answer: "Nougat",
@@ -82,7 +82,7 @@ const questions = [
     {
         category: "Science: Computers",
         type: "boolean",
-        difficulty: "easy",
+        difficulty: "medium",
         question: "Linux was first created as an alternative to Windows XP.",
         correct_answer: "False",
         incorrect_answers: ["True"],
@@ -90,7 +90,7 @@ const questions = [
     {
         category: "Science: Computers",
         type: "multiple",
-        difficulty: "easy",
+        difficulty: "hard",
         question:
             "Which programming language shares its name with an island in Indonesia?",
         correct_answer: "Java",
@@ -120,47 +120,63 @@ window.onload = function () {
 
 // BUON LAVORO 💪🚀
 
-let timerInterval; 
 
-timer();
+let risposteUtente = [];
+let timerId;
+
+let titoloDomanda = document.getElementById('domanda');
+let risposteBtns = document.getElementsByClassName('risposta-btn');
+
+let domandePresentate = [];
+
 selezionaDomanda(questions);
 
-function timer() {
-    let sec = 30;
-    timerInterval = setInterval(function () {
-        let timerSec = document.getElementById('timer-sec');
-        if (sec < 10) {
-            timerSec.innerHTML = '00:0' + sec;
-        } else {
-            timerSec.innerHTML = '00:' + sec;
-        }
-        sec--;
-        if (sec < 0) {
-            clearInterval(timerInterval);
-            //selezionaDomanda(questions);
-        }
-    }, 1000);
-}
-
 function selezionaDomanda(questions) {
+
+    clearInterval(timerId);
 
     let numRand = Math.floor(Math.random() * questions.length);
     let domandaObj = questions[numRand];
     let domanda = domandaObj.question;
 
-    let titoloDomanda = document.getElementById('domanda');
+    let contatore;
 
     titoloDomanda.innerHTML = domanda;
 
-    if(domandaObj.incorrect_answers.length == 1){
+    if (domandaObj.incorrect_answers.length == 1) {
         generaDueBottoni(domandaObj);
-    }else{
+    } else {
         generaQuattroBottoni(domandaObj);
     }
 
-    let risposteBtns = document.getElementsByClassName('risposta-btn');
     for (let i = 0; i < risposteBtns.length; i++) {
-        risposteBtns[i].addEventListener('click', selezionaRisposta);
+        risposteBtns[i].addEventListener('click', function(event) {
+            event.target.classList.add('selected');
+        });
+    }
+
+    if(domandaObj.difficulty == 'easy'){
+        contatore=30;
+    }else if(domandaObj.difficulty == 'medium'){
+        contatore=45;
+    }else{
+        contatore=60;
+    }
+    let timerParag = document.getElementById('timer-sec');
+    timerParag.innerHTML = contatore;
+    document.getElementById('timer').appendChild(timerParag);
+    timerId = setInterval(function() {
+        contatore--;
+        timerParag.innerHTML = contatore;
+        if (contatore <= 0) {
+            clearInterval(timerId);
+            confermaRisposta();
+        }
+    }, 1000);   
+
+    // Rimuovi la domanda selezionata dall'array questions
+    if (questions.includes(domandaObj)) {
+        questions.splice(questions.indexOf(domandaObj), 1);
     }
 
 }
@@ -172,7 +188,7 @@ function generaDueBottoni(domandaObj) {
     let container = document.createElement('div');
     container.classList.add('risposte-quiz');
 
-    risposte.forEach(function(risposta) {
+    risposte.forEach(function (risposta) {
         let button = document.createElement('button');
         button.innerHTML = risposta;
         button.classList.add('risposta-btn');
@@ -209,20 +225,15 @@ function generaQuattroBottoni(domandaObj) {
 
 }
 
-function selezionaRisposta() {
-  
-    let rispostaSelezionata = this.innerHTML;
+function confermaRisposta() {
+    let rispostaSelezionata = document.querySelector('.risposta-btn.selected');
 
-    console.log(rispostaSelezionata);
-
-    clearInterval(timerInterval); 
-  
-    if (document.getElementById('timer-sec').innerHTML === '00:00') {
-      selezionaDomanda(questions); 
+    if (rispostaSelezionata) {
+        risposteUtente.push(rispostaSelezionata.innerHTML);
+        rispostaSelezionata.classList.remove('selected');
     } else {
-      selezionaDomanda(questions);
+        risposteUtente.push('');
     }
-
-    timer();
-
-  }
+    console.log(risposteUtente);
+    selezionaDomanda(questions);
+}
