@@ -8,6 +8,7 @@ function checkPromise() {
         timer();
     }else{
         paragrafoErrore.textContent = 'Devi necessariamente accettare le condizioni per procedere.'
+        paragrafoErrore.classList.add('colore-viola');
         divForm.appendChild(paragrafoErrore);
     }
 }

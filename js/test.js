@@ -120,6 +120,7 @@ window.onload = function () {
 
 // BUON LAVORO 💪🚀
 
+let numeroDomandeTotale=questions.length;
 
 let risposteUtente = [];
 let timerId;
@@ -127,7 +128,11 @@ let timerId;
 let titoloDomanda = document.getElementById('domanda');
 let risposteBtns = document.getElementsByClassName('risposta-btn');
 
-let domandePresentate = [];
+let domandaObj;
+
+let selectedBtn = null; // variabile per tenere traccia del bottone selezionato
+
+let contatoreDomande=0;
 
 selezionaDomanda(questions);
 
@@ -136,12 +141,20 @@ function selezionaDomanda(questions) {
     clearInterval(timerId);
 
     let numRand = Math.floor(Math.random() * questions.length);
-    let domandaObj = questions[numRand];
-    let domanda = domandaObj.question;
+    
+    domandaObj = questions[numRand];
+    
+    let titolo = domandaObj.question;
 
-    let contatore;
+    let tempo;
 
-    titoloDomanda.innerHTML = domanda;
+    titoloDomanda.innerHTML = titolo;
+
+    // Incrementa il contatore di 1
+    contatoreDomande++;
+
+    // Aggiorna il testo dell'elemento HTML con il nuovo valore del contatore
+    document.getElementById('nDomanda').innerHTML = 'QUESTION ' + contatoreDomande + '<span>/'+numeroDomandeTotale+'</span>';
 
     if (domandaObj.incorrect_answers.length == 1) {
         generaDueBottoni(domandaObj);
@@ -151,34 +164,32 @@ function selezionaDomanda(questions) {
 
     for (let i = 0; i < risposteBtns.length; i++) {
         risposteBtns[i].addEventListener('click', function(event) {
-            event.target.classList.add('selected');
+            if (selectedBtn) {
+                selectedBtn.removeAttribute('id'); // rimuovi l'ID dal bottone selezionato precedentemente
+            }
+            event.target.id = 'selected'; // assegna l'ID 'selected' al bottone cliccato
+            selectedBtn = event.target; // salva il bottone cliccato come il nuovo bottone selezionato
         });
     }
 
     if(domandaObj.difficulty == 'easy'){
-        contatore=30;
+        tempo=30;
     }else if(domandaObj.difficulty == 'medium'){
-        contatore=45;
+        tempo=45;
     }else{
-        contatore=60;
+        tempo=60;
     }
     let timerParag = document.getElementById('timer-sec');
-    timerParag.innerHTML = contatore;
+    timerParag.innerHTML = tempo;
     document.getElementById('timer').appendChild(timerParag);
     timerId = setInterval(function() {
-        contatore--;
-        timerParag.innerHTML = contatore;
-        if (contatore <= 0) {
+        tempo--;
+        timerParag.innerHTML = tempo;
+        if (tempo <= 0) {
             clearInterval(timerId);
             confermaRisposta();
         }
     }, 1000);   
-
-    // Rimuovi la domanda selezionata dall'array questions
-    if (questions.includes(domandaObj)) {
-        questions.splice(questions.indexOf(domandaObj), 1);
-    }
-
 }
 
 function generaDueBottoni(domandaObj) {
@@ -226,7 +237,7 @@ function generaQuattroBottoni(domandaObj) {
 }
 
 function confermaRisposta() {
-    let rispostaSelezionata = document.querySelector('.risposta-btn.selected');
+    let rispostaSelezionata = document.querySelector('.risposta-btn#selected');
 
     if (rispostaSelezionata) {
         risposteUtente.push(rispostaSelezionata.innerHTML);
@@ -234,6 +245,15 @@ function confermaRisposta() {
     } else {
         risposteUtente.push('');
     }
+
+    eliminaDomanda(domandaObj);
+
     console.log(risposteUtente);
     selezionaDomanda(questions);
+}
+
+function eliminaDomanda(domandaObj) {
+    if (questions.includes(domandaObj)) {
+        questions.splice(questions.indexOf(domandaObj), 1);
+    }
 }

@@ -121,15 +121,17 @@ div#sezione-quiz div#quiz div.risposte-quiz button{
 }
 div#sezione-quiz div#quiz div.risposte-quiz button:hover{
     background: #C2128D;
-    animation-duration: 3s;
+    animation-duration: 5s;
 }
-div#sezione-quiz div#quiz div.risposte-quiz button:active{
+div#sezione-quiz div#quiz div.risposte-quiz button#selected{
     background: #00FFFF;
-    animation-duration: 3s;
 }
 div#sezione-quiz p.center{
     padding-top:2rem;
     padding-bottom:2rem;
+}
+div#sezione-quiz div#footer div#input p#nDomanda span{
+    color:#C2128D;
 }
 /* SEZIONE QUIZ */
 
