@@ -296,5 +296,5 @@ function eliminaDomanda(domandaObj) {
 
 function calcolaPunteggio(risposteUtente) {
     console.log(risposteUtente);
-    window.location.href = 'review.html';
+    window.location.href = 'result.html';
 }
