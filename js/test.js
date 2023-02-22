@@ -278,7 +278,7 @@ function confermaRisposta() {
     if (contatoreDomande != numeroDomandeTotale) {
 
         /*in questo momento i bottoni vengono creati dentro al paragrafo 
-        inseririli dentro al div quiz ma sotto al paragrafo+
+        inseririli dentro al div quiz ma sotto al paragrafo
         e in questo punto rimuovere tutti i bottoni o il div quiz 
         prima di lanciare nuovamente selezionaDomanda
         */
