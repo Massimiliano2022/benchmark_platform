@@ -156,8 +156,6 @@ function selezionaDomanda(questions) {
 
     let numRand = Math.floor(Math.random() * questions.length);
 
-    //domandaObj = questionsOriginale[numRand];
-
     domandaObj = questions[numRand];
 
     let titolo = domandaObj.question;
@@ -179,10 +177,10 @@ function selezionaDomanda(questions) {
     for (let i = 0; i < risposteBtns.length; i++) {
         risposteBtns[i].addEventListener('click', function (event) {
             if (selectedBtn) {
-                selectedBtn.removeAttribute('id'); // rimuovi l'ID dal bottone selezionato precedentemente
+                selectedBtn.removeAttribute('id');
             }
-            event.target.id = 'selected'; // assegna l'ID 'selected' al bottone cliccato
-            selectedBtn = event.target; // salva il bottone cliccato come il nuovo bottone selezionato
+            event.target.id = 'selected';
+            selectedBtn = event.target;
         });
     }
 
@@ -198,7 +196,7 @@ function selezionaDomanda(questions) {
     timerParag.innerHTML = tempo;
 
     let paragrafiTestoSecondi = document.getElementsByClassName('testo-secondi');
-    let referenceElement = paragrafiTestoSecondi[0]; // il primo elemento con classe "testo-secondi"
+    let referenceElement = paragrafiTestoSecondi[0];
 
     referenceElement.parentNode.insertBefore(timerParag, referenceElement.nextSibling);
 
@@ -286,8 +284,6 @@ function confermaRisposta() {
         valoreRisposta = rispostaSelezionata.innerHTML;
     }
 
-    //let indiceDomanda = questions.indexOf(domandaObj);
-
     let risposta = {
         indice: domandaObj.indice,
         valore: valoreRisposta
@@ -312,7 +308,7 @@ function confermaRisposta() {
         e in questo punto rimuovere tutti i bottoni o il div quiz 
         prima di lanciare nuovamente selezionaDomanda
         */
-        
+
         selezionaDomanda(questions);
     } else {
         calcolaPunteggio(risposteUtente);
@@ -327,6 +323,9 @@ function eliminaDomanda(domandaObj) {
 
 function calcolaPunteggio(risposteUtente) {
 
+    let percCorrette;
+    let percSbagliate;
+
     console.log(questionsOriginale);
 
     clearInterval(timerId);
@@ -334,7 +333,7 @@ function calcolaPunteggio(risposteUtente) {
     let indiceRisposta;
     let valoreRisposta;
 
-    let punteggio=0;
+    let punteggio = 0;
 
     for (let i = 0; i < risposteUtente.length; i++) {
         indiceRisposta = risposteUtente[i].indice;
@@ -343,15 +342,18 @@ function calcolaPunteggio(risposteUtente) {
         console.log(indiceRisposta);
         console.log(valoreRisposta);
 
-        if(valoreRisposta==questionsOriginale[indiceRisposta].correct_answer){
+        if (valoreRisposta == questionsOriginale[indiceRisposta].correct_answer) {
             punteggio++;
         }
-        
+
     }
 
-    console.log('Punteggio: '+punteggio);
+    percCorrette = punteggio * 10;
+    percSbagliate = (10 - punteggio) * 10;
 
-    const punteggioCodificato = encodeURIComponent(punteggio);
+    const percCorretteCodificate = encodeURIComponent(percCorrette);
+    const percSbagliateCodificate = encodeURIComponent(percSbagliate);
 
-    window.location.replace(`result.html?punteggio=${punteggioCodificato}`);
+    window.location.replace(`result.html?corrette=${percCorretteCodificate}&sbagliate=${percSbagliateCodificate}`);
+
 }

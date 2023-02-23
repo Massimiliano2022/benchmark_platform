@@ -128,7 +128,7 @@ div#sezione-quiz div#quiz div.risposte-quiz button:hover{
     animation-duration: 5s;
 }
 div#sezione-quiz div#quiz div.risposte-quiz button#selected{
-    background: #00FFFF;
+    background: #C2128D;
 }
 div#sezione-quiz p.center{
     padding-top:2rem;
@@ -174,17 +174,13 @@ div#sezione-result div#result div.risultato{
     /*padding: 4rem;*/
     margin: 0 4rem;
 }
-div#sezione-result div#div-esito{
-    border: 3px solid white;
-    border-radius: 50%;
-    background: #00FFFF;
-
+/*div#sezione-result div#div-esito{
     padding:6rem;
 }
 
-div#sezione-result div#div-esito p {
+/*div#sezione-result div#div-esito p {
     font-size: 0.75rem;
-}
+}*/
 
 div#sezione-result button{
     margin-bottom: 1rem;
