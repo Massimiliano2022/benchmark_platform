@@ -10,6 +10,7 @@ const questions = [
             "Computer Personal Unit",
             "Central Processor Unit",
         ],
+        indice: 0
     },
     {
         category: "Science: Computers",
@@ -19,6 +20,7 @@ const questions = [
             "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn&#039;t get modified?",
         correct_answer: "Final",
         incorrect_answers: ["Static", "Private", "Public"],
+        indice: 1
     },
     {
         category: "Science: Computers",
@@ -27,6 +29,7 @@ const questions = [
         question: "The logo for Snapchat is a Bell.",
         correct_answer: "False",
         incorrect_answers: ["True"],
+        indice: 2
     },
     {
         category: "Science: Computers",
@@ -36,6 +39,7 @@ const questions = [
             "Pointers were not used in the original C programming language; they were added later on in C++.",
         correct_answer: "False",
         incorrect_answers: ["True"],
+        indice: 3
     },
     {
         category: "Science: Computers",
@@ -45,6 +49,7 @@ const questions = [
             "What is the most preferred image format used for logos in the Wikimedia database?",
         correct_answer: ".svg",
         incorrect_answers: [".png", ".jpeg", ".gif"],
+        indice: 4
     },
     {
         category: "Science: Computers",
@@ -57,6 +62,7 @@ const questions = [
             "Corrective Style Sheet",
             "Computer Style Sheet",
         ],
+        indice: 5
     },
     {
         category: "Science: Computers",
@@ -70,6 +76,7 @@ const questions = [
             "Jelly Bean",
             "Marshmallow",
         ],
+        indice:6
     },
     {
         category: "Science: Computers",
@@ -78,6 +85,7 @@ const questions = [
         question: "On Twitter, what is the character limit for a Tweet?",
         correct_answer: "140",
         incorrect_answers: ["120", "160", "100"],
+        indice:7
     },
     {
         category: "Science: Computers",
@@ -86,6 +94,7 @@ const questions = [
         question: "Linux was first created as an alternative to Windows XP.",
         correct_answer: "False",
         incorrect_answers: ["True"],
+        indice:8
     },
     {
         category: "Science: Computers",
@@ -95,6 +104,7 @@ const questions = [
             "Which programming language shares its name with an island in Indonesia?",
         correct_answer: "Java",
         incorrect_answers: ["Python", "C", "Jakarta"],
+        indice:9
     },
 ];
 
@@ -120,19 +130,19 @@ window.onload = function () {
 
 // BUON LAVORO 💪🚀
 
+let questionsOriginale= questions;
+
 let numeroDomandeTotale = questions.length;
 
 let risposteUtente = [];
 let timerId;
-
-//let quizDiv = document.getElementById('quiz');
 
 let titoloDomanda = document.getElementById('domanda');
 let risposteBtns = document.getElementsByClassName('risposta-btn');
 
 let domandaObj;
 
-let selectedBtn = null; // variabile per tenere traccia del bottone selezionato
+let selectedBtn = null;
 
 let contatoreDomande = 0;
 
@@ -144,7 +154,12 @@ function selezionaDomanda(questions) {
 
     let numRand = Math.floor(Math.random() * questions.length);
 
-    domandaObj = questions[numRand];
+    //domandaObj = questions[numRand];
+
+    domandaObj=questionsOriginale[numRand];
+
+    /*console.log('questionsOriginale :'+questionsOriginale);
+    console.log('questions :' +questions);*/
 
     let titolo = domandaObj.question;
 
@@ -152,10 +167,8 @@ function selezionaDomanda(questions) {
 
     titoloDomanda.innerHTML = titolo;
 
-    // Incrementa il contatore di 1
     contatoreDomande++;
 
-    // Aggiorna il testo dell'elemento HTML con il nuovo valore del contatore
     document.getElementById('nDomanda').innerHTML = 'QUESTION ' + contatoreDomande + '<span>/' + numeroDomandeTotale + '</span>';
 
     if (domandaObj.incorrect_answers.length == 1) {
@@ -164,28 +177,14 @@ function selezionaDomanda(questions) {
         generaQuattroBottoni(domandaObj);
     }
 
-    /*for (let i = 0; i < risposteBtns.length; i++) {
+    for (let i = 0; i < risposteBtns.length; i++) {
         risposteBtns[i].addEventListener('click', function (event) {
             if (selectedBtn) {
                 selectedBtn.removeAttribute('id'); // rimuovi l'ID dal bottone selezionato precedentemente
             }
-
             event.target.id = 'selected'; // assegna l'ID 'selected' al bottone cliccato
             selectedBtn = event.target; // salva il bottone cliccato come il nuovo bottone selezionato
-            // devo intervenire quiiiiiiiiii
         });
-    }*/
-
-    for (let i = 0; i < risposteBtns.length; i++) {
-        risposteBtns[i].onclick = function () {
-            if (selectedBtn) {
-                selectedBtn.removeAttribute('id');
-            }
-            this.id = 'selected';
-            selectedBtn = this;
-            // chiamo la tua funzione
-            confermaRisposta(domandaObj);
-        }
     }
 
     if (domandaObj.difficulty == 'easy') {
@@ -209,7 +208,7 @@ function selezionaDomanda(questions) {
         timerParag.innerHTML = tempo;
         if (tempo <= 0) {
             clearInterval(timerId);
-            confermaRisposta(domandaObj);
+            confermaRisposta();            
         }
     }, 1000);
 }
@@ -277,26 +276,23 @@ function generaQuattroBottoni(domandaObj) {
 
 }
 
-function confermaRisposta(domandaObj) {
+function confermaRisposta() {
 
     let rispostaSelezionata = document.querySelector('.risposta-btn#selected');
 
-    let indiceDomanda = questions.indexOf(domandaObj);
+    let valoreRisposta;
+    if(rispostaSelezionata===null){
+        valoreRisposta='';
+    }else{
+        valoreRisposta=rispostaSelezionata.innerHTML;
+    }
+
+    //let indiceDomanda = questions.indexOf(domandaObj);
 
     let risposta = {
-        indice: indiceDomanda,
-        valore: rispostaSelezionata.innerHTML
+        indice: domandaObj.indice,
+        valore: valoreRisposta
     };
-
-    /*if (rispostaSelezionata) {
-
-        risposteUtente.push(rispostaSelezionata.innerHTML);
-
-        rispostaSelezionata.classList.remove('selected');
-
-    } else {
-        risposteUtente.push('');
-    }*/
 
     if (rispostaSelezionata) {
 
@@ -305,12 +301,8 @@ function confermaRisposta(domandaObj) {
         rispostaSelezionata.classList.remove('selected');
 
     } else {
-        //risposteUtente.push('');
-
         risposteUtente.push(risposta);
     }
-
-    console.log(risposteUtente);
 
     eliminaDomanda(domandaObj);
 
@@ -335,11 +327,10 @@ function eliminaDomanda(domandaObj) {
 
 function calcolaPunteggio(risposteUtente) {
     clearInterval(timerId);
-    //console.log(risposteUtente);
-
-    for (let risposta of risposteUtente) {
-
-        console.log(risposta);
+    
+    for(i=0;i<risposteUtente.length;i++){
+        
+        console.log(typeof risposteUtente[i]);
 
     }
 
