@@ -164,14 +164,28 @@ function selezionaDomanda(questions) {
         generaQuattroBottoni(domandaObj);
     }
 
-    for (let i = 0; i < risposteBtns.length; i++) {
+    /*for (let i = 0; i < risposteBtns.length; i++) {
         risposteBtns[i].addEventListener('click', function (event) {
             if (selectedBtn) {
                 selectedBtn.removeAttribute('id'); // rimuovi l'ID dal bottone selezionato precedentemente
             }
+
             event.target.id = 'selected'; // assegna l'ID 'selected' al bottone cliccato
             selectedBtn = event.target; // salva il bottone cliccato come il nuovo bottone selezionato
+            // devo intervenire quiiiiiiiiii
         });
+    }*/
+
+    for (let i = 0; i < risposteBtns.length; i++) {
+        risposteBtns[i].onclick = function () {
+            if (selectedBtn) {
+                selectedBtn.removeAttribute('id');
+            }
+            this.id = 'selected';
+            selectedBtn = this;
+            // chiamo la tua funzione
+            confermaRisposta(domandaObj);
+        }
     }
 
     if (domandaObj.difficulty == 'easy') {
@@ -195,7 +209,7 @@ function selezionaDomanda(questions) {
         timerParag.innerHTML = tempo;
         if (tempo <= 0) {
             clearInterval(timerId);
-            confermaRisposta();
+            confermaRisposta(domandaObj);
         }
     }, 1000);
 }
@@ -263,12 +277,18 @@ function generaQuattroBottoni(domandaObj) {
 
 }
 
-function confermaRisposta() {
+function confermaRisposta(domandaObj) {
+
+    console.log(domandaObj);
+
     let rispostaSelezionata = document.querySelector('.risposta-btn#selected');
 
     if (rispostaSelezionata) {
+
         risposteUtente.push(rispostaSelezionata.innerHTML);
+
         rispostaSelezionata.classList.remove('selected');
+
     } else {
         risposteUtente.push('');
     }
@@ -295,6 +315,14 @@ function eliminaDomanda(domandaObj) {
 }
 
 function calcolaPunteggio(risposteUtente) {
-    console.log(risposteUtente);
-    window.location.href = 'result.html';
+    clearInterval(timerId);
+    //console.log(risposteUtente);
+
+    for (let risposta of risposteUtente) {
+
+        console.log(risposta);
+
+    }
+
+    //window.location.href = 'result.html';
 }
