@@ -134,7 +134,7 @@ window.onload = function () {
 
 let questionsOriginale = [...questions];
 
-let numeroDomandeTotale = questions.length;
+const numeroDomandeTotale = questions.length;
 
 let risposteUtente = [];
 let timerId;
@@ -354,6 +354,6 @@ function calcolaPunteggio(risposteUtente) {
     const percCorretteCodificate = encodeURIComponent(percCorrette);
     const percSbagliateCodificate = encodeURIComponent(percSbagliate);
 
-    window.location.replace(`result.html?corrette=${percCorretteCodificate}&sbagliate=${percSbagliateCodificate}`);
+    window.location.replace(`result.html?corrette=${percCorretteCodificate}&sbagliate=${percSbagliateCodificate}&totaleDomande=${numeroDomandeTotale}`);
 
 }

@@ -167,7 +167,7 @@ div#sezione-result div#result{
     justify-content: center;
     align-items: center;
 
-    margin: 4rem 0;
+    padding: 2rem 0;
 }
 
 div#sezione-result div#result div.risultato{
@@ -175,10 +175,14 @@ div#sezione-result div#result div.risultato{
     margin: 0 4rem;
 }
 /*div#sezione-result div#div-esito{
+    border: 3px solid white;
+    border-radius: 50%;
+    background: #00FFFF;
+
     padding:6rem;
 }
 
-/*div#sezione-result div#div-esito p {
+div#sezione-result div#div-esito p {
     font-size: 0.75rem;
 }*/
 
