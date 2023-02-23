@@ -279,11 +279,16 @@ function generaQuattroBottoni(domandaObj) {
 
 function confermaRisposta(domandaObj) {
 
-    console.log(domandaObj);
-
     let rispostaSelezionata = document.querySelector('.risposta-btn#selected');
 
-    if (rispostaSelezionata) {
+    let indiceDomanda = questions.indexOf(domandaObj);
+
+    let risposta = {
+        indice: indiceDomanda,
+        valore: rispostaSelezionata.innerHTML
+    };
+
+    /*if (rispostaSelezionata) {
 
         risposteUtente.push(rispostaSelezionata.innerHTML);
 
@@ -291,7 +296,21 @@ function confermaRisposta(domandaObj) {
 
     } else {
         risposteUtente.push('');
+    }*/
+
+    if (rispostaSelezionata) {
+
+        risposteUtente.push(risposta);
+
+        rispostaSelezionata.classList.remove('selected');
+
+    } else {
+        //risposteUtente.push('');
+
+        risposteUtente.push(risposta);
     }
+
+    console.log(risposteUtente);
 
     eliminaDomanda(domandaObj);
 
