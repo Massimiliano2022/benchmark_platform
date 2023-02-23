@@ -76,7 +76,7 @@ const questions = [
             "Jelly Bean",
             "Marshmallow",
         ],
-        indice:6
+        indice: 6
     },
     {
         category: "Science: Computers",
@@ -85,7 +85,7 @@ const questions = [
         question: "On Twitter, what is the character limit for a Tweet?",
         correct_answer: "140",
         incorrect_answers: ["120", "160", "100"],
-        indice:7
+        indice: 7
     },
     {
         category: "Science: Computers",
@@ -94,7 +94,7 @@ const questions = [
         question: "Linux was first created as an alternative to Windows XP.",
         correct_answer: "False",
         incorrect_answers: ["True"],
-        indice:8
+        indice: 8
     },
     {
         category: "Science: Computers",
@@ -104,7 +104,7 @@ const questions = [
             "Which programming language shares its name with an island in Indonesia?",
         correct_answer: "Java",
         incorrect_answers: ["Python", "C", "Jakarta"],
-        indice:9
+        indice: 9
     },
 ];
 
@@ -130,7 +130,9 @@ window.onload = function () {
 
 // BUON LAVORO 💪🚀
 
-let questionsOriginale= questions;
+//let questionsOriginale = questions;
+
+let questionsOriginale = [...questions];
 
 let numeroDomandeTotale = questions.length;
 
@@ -154,12 +156,9 @@ function selezionaDomanda(questions) {
 
     let numRand = Math.floor(Math.random() * questions.length);
 
-    //domandaObj = questions[numRand];
+    //domandaObj = questionsOriginale[numRand];
 
-    domandaObj=questionsOriginale[numRand];
-
-    /*console.log('questionsOriginale :'+questionsOriginale);
-    console.log('questions :' +questions);*/
+    domandaObj = questions[numRand];
 
     let titolo = domandaObj.question;
 
@@ -208,7 +207,7 @@ function selezionaDomanda(questions) {
         timerParag.innerHTML = tempo;
         if (tempo <= 0) {
             clearInterval(timerId);
-            confermaRisposta();            
+            confermaRisposta();
         }
     }, 1000);
 }
@@ -281,10 +280,10 @@ function confermaRisposta() {
     let rispostaSelezionata = document.querySelector('.risposta-btn#selected');
 
     let valoreRisposta;
-    if(rispostaSelezionata===null){
-        valoreRisposta='';
-    }else{
-        valoreRisposta=rispostaSelezionata.innerHTML;
+    if (rispostaSelezionata === null) {
+        valoreRisposta = '';
+    } else {
+        valoreRisposta = rispostaSelezionata.innerHTML;
     }
 
     //let indiceDomanda = questions.indexOf(domandaObj);
@@ -313,6 +312,7 @@ function confermaRisposta() {
         e in questo punto rimuovere tutti i bottoni o il div quiz 
         prima di lanciare nuovamente selezionaDomanda
         */
+        
         selezionaDomanda(questions);
     } else {
         calcolaPunteggio(risposteUtente);
@@ -326,13 +326,32 @@ function eliminaDomanda(domandaObj) {
 }
 
 function calcolaPunteggio(risposteUtente) {
-    clearInterval(timerId);
-    
-    for(i=0;i<risposteUtente.length;i++){
-        
-        console.log(typeof risposteUtente[i]);
 
+    console.log(questionsOriginale);
+
+    clearInterval(timerId);
+
+    let indiceRisposta;
+    let valoreRisposta;
+
+    let punteggio=0;
+
+    for (let i = 0; i < risposteUtente.length; i++) {
+        indiceRisposta = risposteUtente[i].indice;
+        valoreRisposta = risposteUtente[i].valore;
+
+        console.log(indiceRisposta);
+        console.log(valoreRisposta);
+
+        if(valoreRisposta==questionsOriginale[indiceRisposta].correct_answer){
+            punteggio++;
+        }
+        
     }
 
-    //window.location.href = 'result.html';
+    console.log('Punteggio: '+punteggio);
+
+    const punteggioCodificato = encodeURIComponent(punteggio);
+
+    window.location.replace(`result.html?punteggio=${punteggioCodificato}`);
 }
