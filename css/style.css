@@ -263,3 +263,6 @@ div#sezione-review div#feedback button{
   .paragrafi-small{
     font-size:0.5rem;
   }
+  .star.color{
+    fill: #00FFFF;
+  }
