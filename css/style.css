@@ -246,3 +246,20 @@ div#sezione-review div#feedback button{
 }
 
 /* SEZIONE REVIEW */
+
+#circle-bar-progress-value {
+    position: absolute;
+    top: 55%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-50%);
+    font-size: 100%;
+    font-weight: bold;
+  }
+  .coloreBlu {
+    color:#00FFFF;
+  }
+  .paragrafi-small{
+    font-size:0.5rem;
+  }

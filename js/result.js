@@ -11,7 +11,7 @@ let circleBarProgressConfig = {
     type: 'doughnut',
     data: {
         datasets: [{
-            data: [corrette, sbagliate], // percentuali di completamento e incompletamento della barra
+            data: [sbagliate,corrette], // percentuali di completamento e incompletamento della barra
             backgroundColor: [
                 '#C2128D', // colore della parte completata
                 '#00FFFF' // colore della parte incompleta
@@ -37,31 +37,54 @@ let circleBarProgressConfig = {
         }
     }
 };
+
 let circleBarProgressCanvas = document.getElementById('circle-bar-progress');
 let circleBarProgress = new Chart(circleBarProgressCanvas, circleBarProgressConfig);
 
-/*let divTesto = document.getElementById('circle-bar-progress-value')
-let parra = document.createElement('p')
-let parra1 = document.createElement('p')
-parra1.classList.add('coloreBlu')
-let parra2 = document.createElement('p')
-let parra3 = document.createElement('p')
+let divTesto = document.getElementById('circle-bar-progress-value');
+console.log(divTesto);
+console.log(divTesto.innerHTML);
 
-divTesto.appendChild(parra);
-divTesto.appendChild(parra1);
-divTesto.appendChild(parra2);
-divTesto.appendChild(parra3);
+let pTitle = document.createElement('p');
+let pSubTitle = document.createElement('p');
+let pCertificato = document.createElement('p');
+let pCheck = document.createElement('p');
 
+pSubTitle.classList.add('coloreBlu');
+pCertificato.classList.add('paragrafi-small');
+pCheck.classList.add('paragrafi-small');
 
-
+divTesto.appendChild(pTitle);
+divTesto.appendChild(pSubTitle);
+divTesto.appendChild(pCertificato);
+divTesto.appendChild(pCheck);
 
 
 if(corrette >= 50){
-    parra.innerHTML = 'Congratulations!'
-    parra1.innerHTML = 'You passed the exam.'
-
+    pTitle.innerHTML = 'Congratulations!';
+    pSubTitle.innerHTML = 'You passed the exam.';
+    pCertificato.innerHTML = `We'll send you the certificate in few minutes`;
+    pCheck.innerHTML = 'Check your email (including promotions / spam folder)';
 }else{
-    parra.innerHTML = 'Oh no!'
-    parra1.innerHTML = 'You failed the exam.'
+    pTitle.innerHTML = 'Oh no!';
+    pSubTitle.innerHTML = 'You failed the exam.';
+    pCertificato.innerHTML = `We'll not send you the certificate in few minutes`;
+    pCheck.innerHTML = `Don't check your email!You are a goat!!! GOAT GOAT`;
+}
 
-}*/
+
+let paragPercCorrect = document.getElementById('corrette-percentuale');
+paragPercCorrect.innerHTML=corrette+'%';
+
+let paragPercWrong = document.getElementById('sbagliate-percentuale');
+paragPercWrong.innerHTML=sbagliate+'%';
+
+let pCorretteQuestion=document.getElementById('corrette-question');
+pCorretteQuestion.innerHTML=corrette/10 +'/'+totaleDomande +' questions';
+
+let pSbagliateQuestion=document.getElementById('sbagliate-question');
+pSbagliateQuestion.innerHTML=sbagliate/10 +'/'+totaleDomande +' questions';
+
+function votaci() {
+    window.location.href = "review.html";    
+}
